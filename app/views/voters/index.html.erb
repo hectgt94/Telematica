@@ -1,0 +1,22 @@
+<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com") %>
+<h1>Votantes</h1>
+<table class="table table-striped">
+	<tr>
+		<th>Nombre:</th>
+		<th>Cédula:</th>
+	</tr>
+	<% @place.voters.each do |voter| %>
+		<tr>
+			<td><%= voter.nombre %></td>
+			<td><%= voter.cedula %></td>
+		</tr>
+	<% end %>
+</table>
+
+<div class="btn-group" role="group" aria-label="...">
+	<button type="button" class="btn btn-default"><%= link_to 'Nuevo votante', new_place_voter_path(@place) %></button>
+</div>
+<%end%>
+<div class="btn-group" role="group" aria-label="...">
+	<button type="button" class="btn btn-default"><%= link_to 'Volver', place_path(@place[:id]) %></button>
+</div>

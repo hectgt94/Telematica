@@ -1,0 +1,38 @@
+<% provide(:Title, "Estadísticas") %>
+<h1 >Así van las votaciones</h1>
+<%@yes = 0%>
+<%@no = 0%>
+<% @stats.each do |stat| %>
+
+	<% @yes = @yes + stat.vote_yes %>
+	<% @no = @no + stat.vote_no %>
+<% end %>
+<h4 class="text-center"><strong>Votos totales por el SI: </strong><%= 100*@yes/(@yes+@no) %>%</h4>
+<h4 class="text-center"><strong>Votos totales por el NO: </strong><%= 100*@no/(@yes+@no) %>%</h4>
+<!-- Esto es para obtener las ids de las mesas en las que se ha votado en @idm-->
+<% @idm = Array.new %>
+<% @idm[0] = 0 %> 
+<% @a = 1 %>
+<% @stats.each do |stat| %>
+    <% @i=0 %>
+	<% @idm.each do |id| %>
+  		<% if id == stat.idmesa %>
+    		<% @i=1 %>
+    	<% end %>
+   	<% end %>
+   	<% if @i == 0 %>
+    	<% @idm[@a] = stat.idmesa %>
+    	<% @a = @a + 1 %>
+    <% end %> 
+<% end %>
+<%@idm = @idm[1..@idm.length]%>
+<p>Seleccione el puesto de votacion del que desea ver estadisticas</p>
+<%= form_tag "/search/getvotes", method: :get, remote:  true, id:"select-form" do %>
+	<p><%= select_tag :option, options_for_select(@places.collect{ |u| [u.nombre]}), :selected => :option %></p>
+	<div class="actions">
+    <p><button type="submit" class="btn btn-default">Buscar</button></p>
+  </div>
+<%end%>
+
+<div id="resultados2">
+</div>

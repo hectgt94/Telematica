@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs">
+  	<li role="presentation" class="<%= yield(:Inicio)%>"><%= link_to "Inicio", root_path%></li>
+  	<% if not (user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" )) %>
+  		<li role="presentation" class="disabled"><a href ="#">Puestos de votación</a></li>
+  		<li role="presentation" class="disabled"><a href ="#">Votación</a></li>
+  	<%else%>
+  		<li role="presentation" class="<%= yield(:Puestos)%>"><%= link_to "Puestos de votación", places_path%></li>
+  		<li role="presentation" class="<%= yield(:Votacion)%>"><%= link_to "Votación", main_index_path%></li>
+  	<%end%>
+  	<% if user_signed_in? %>
+	  	<li role="presentation" class="<%= yield(:destroy_user_session_path)%>">
+			<%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+		</li>
+	<%else%>
+		<li role="presentation" class="<%= yield(:Signin)%>">
+		  	<%= link_to "Iniciar sesión", new_user_session_path %>
+		</li>
+	<%end%>
+</ul>
+

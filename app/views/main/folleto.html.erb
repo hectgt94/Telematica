@@ -1,0 +1,30 @@
+<style type="text/css">
+	h1 {
+		font-size: 40px;
+		font-weight: bold;
+		font-family: Helvetica;
+		color: #000000;
+		text-decoration: unset;
+		text-transform: unset;
+		text-align: center;
+	}
+
+	h2 {
+		font-size: 28px;
+		font-weight: bold;
+		font-family: Helvetica;
+		color: #000000;
+		text-decoration: unset;
+		text-transform: unset;
+		text-align: center;
+	}
+</style>
+
+<div class="jumbotron">
+	<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com") %>
+	<h1>Cartilla de votación</h1>
+	<h2>¿Apoya usted el acuerdo final para la terminación del conflicto y la construcción de una paz estable y duradera?</h2>
+	<p><button type="button" class="btn btn-default"><%= link_to 'SI',stats_salida_path(:voto1 => 1, :voto2 => 0), data: { confirm: "Su opción es: SI \n ¿Está seguro?" }%></a></button>
+	<p><button type="button" class="btn btn-default"><%= link_to 'NO',stats_salida_path(:voto1 => 0, :voto2 => 1), data: { confirm: "Su opción es: NO \n ¿Está seguro?" }%></a></button>
+	<%end%>
+</div>

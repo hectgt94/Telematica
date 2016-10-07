@@ -1,0 +1,28 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "utilities";
+@import "principal";
+
+h1{
+	font-size: 28px;
+	font-weight: bold;
+	font-family: Helvetica;
+	color: #A52A2A;
+	text-decoration: unset;
+	text-transform: unset;
+	text-align: center;
+}
+
+body {
+	margin: 10px;
+}
+
+.jumbotron {
+  background: url("logos/logo2.png") no-repeat center center;
+  background-size: 80% 80%;
+  height: 80%;
+  -moz-background-size: 80% 80%;
+  -webkit-background-size: 80% 80%;
+  -o-background-size: 80% 80%;
+}

@@ -1,0 +1,24 @@
+<div>
+<% if @i==1 %>
+	<strong><%= voter.nombre %></strong>
+	<td><%= link_to 'Ver sitio de votación', place_path(voter.place_id) %></td>
+<% elsif @i==2%>
+	<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" ) %>
+		<h2 class="text-left"><strong><%= voter.nombre %></strong></h2>
+		<% if voter.havotado == 'no'%>
+			<h5>El ciudadano ya votó</h5>
+		<% else %>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default"><%= link_to 'Votar', main_folleto_path(:id => voter.id) %></td></button>
+		</div>
+		<% end %>
+	<%end%>
+<% else%>
+	<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" ) %>
+		<strong>El ciudadano </strong>
+		<strong><%= voter.nombre %></strong>
+		<strong> no se encuentra inscrito en este puesto de votación</strong>
+		<td><%= link_to 'Ver sitio de votación', place_path(voter.place_id) %></td>
+	<%end%>
+<% end %>
+</div>

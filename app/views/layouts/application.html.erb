@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:Title) %> | Plebiscito</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div>
+		<%= image_tag("logos/logo@2x.png", :size => '262x86', :alt => 'logo') %>		
+	</div>
+	<%= render 'shared/navbar' %>
+</head>
+<body>
+  <title>Plebiscito</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag "https://www.google.com/jsapi" %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+<%= yield %>
+<blockquote class="blockquote-reverse">
+	<footer>
+		Esta página fue creada con fines educativos como parte del curso "Telemática"
+		Universidad del Norte - Colombia
+		2016
+	</footer>
+</blockquote>
+</body>
+
+</html>

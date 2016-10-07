@@ -1,0 +1,44 @@
+<% provide(:Puestos, "active") %>
+<% provide(:Title, "Puestos") %>
+<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" ) %>
+    <p>
+      <strong>Nombre:</strong>
+      <%= @place.nombre %>
+    </p>
+     
+    <p>
+      <strong>Dirección:</strong>
+      <%= @place.direccion %>
+    </p>
+    <p>
+      <strong>Ciudad:</strong>
+      <%= @place.ciudad %>
+    </p>
+    <p>
+      <strong>Departamento:</strong>
+      <%= @place.departamento %>
+    </p>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default"><%= link_to 'Votantes', place_voters_path(@place) %></button>
+      <button type="button" class="btn btn-default"><%= link_to 'Editar', edit_place_path(@place) %></button>
+      <button type="button" class="btn btn-default"><%= link_to 'Volver', places_path %></button>
+    </div>
+<%else%>
+    <p>
+      <strong>Nombre:</strong>
+      <%= @place.nombre %>
+    </p>
+     
+    <p>
+      <strong>Dirección:</strong>
+      <%= @place.direccion %>
+    </p>
+    <p>
+      <strong>Ciudad:</strong>
+      <%= @place.ciudad %>
+    </p>
+    <p>
+      <strong>Departamento:</strong>
+      <%= @place.departamento %>
+    </p>
+<% end %>

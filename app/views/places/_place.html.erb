@@ -1,0 +1,24 @@
+<ul class="list-group">
+	<li class="list-group-item">
+		<strong><%= place.nombre %></strong>
+			<%= place.direccion %>
+			<%= place.ciudad %>
+		<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" ) %>
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default">
+						<%= link_to "Ver", place %>
+					</button>
+					<button type="button" class="btn btn-default">
+						<%= link_to "Asociar", search_votar_path(:action => "ucreate", :pid => place.id) , data: { confirm: '¿Estás seguro?' } %>
+					</button>
+				</div>
+			
+		<%else%>
+			<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default">
+						<%= link_to "Ver", place  %>
+					</button>
+				</div>
+		<%end%>
+	</li>
+</ul>

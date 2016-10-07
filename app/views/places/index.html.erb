@@ -1,0 +1,56 @@
+<% provide(:Puestos, "active") %>
+<% provide(:Title, "Puestos") %>
+
+<h1>Puestos de Votación Registrados</h1>
+<% if user_signed_in? && (current_user.email == "dayanm@uninorte.com" || current_user.email == "hector@uninorte.com" || current_user.email == "julian@uninorte.com" ) %>
+  <table class="table table-striped">
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Departamento</th>
+      <th>Ver</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+    </tr>
+   
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.nombre %></td>
+        <td><%= place.direccion %></td>
+        <td><%= place.ciudad %></td>
+        <td><%= place.departamento %></td>
+        <td><%= link_to 'Ver', place_path(place) %></td>
+        <td><%= link_to 'Editar', edit_place_path(place) %></td>  
+        <td><%= link_to 'Borrar', place_path(place), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>   
+      </tr>
+    <% end %>
+  </table>
+  <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default"><%= link_to 'Nuevo Puesto', new_place_path %></button>
+    <button type="button" class="btn btn-default"><%= link_to 'Buscar Puestos de Votación', '/main/index' %></button>
+  </div>
+<%else%>
+  <table class="table table-striped">
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Departamento</th>
+      <th>Ver</th>
+    </tr>
+    <% @places.each do |place| %>
+
+      <tr>
+        <td><%= place.nombre %></td>
+        <td><%= place.direccion %></td>
+        <td><%= place.ciudad %></td>
+        <td><%= place.departamento %></td>
+        <td><%= link_to 'Ver', place_path(place) %></td>
+      </tr>
+    <%end%>
+  </table>
+  <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default"><%= link_to 'Buscar Puestos de Votación', '/main/index' %></button>
+  </div>
+<% end %>
