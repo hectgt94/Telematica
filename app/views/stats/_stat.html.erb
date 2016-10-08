@@ -1,5 +1,11 @@
 <div>
 	<p>El número de votos por el sí en este puesto es: <span id="nyes"><%= @yesm = @numvotes[0] %></span></p>
 	<p>El número de votos por el no en este puesto es: <span id="nno"><%= @nom = @numvotes[1] %></span></p>	
-	<div><%= pie_chart({"Sí [%]"=>100*@yesm/(@yesm+@nom), "No [%]"=>100*@nom/(@yesm+@nom)}) %></div>
+	<div>
+	<% if @yesm == 0 and @nom == 0 %>
+	<%= pie_chart({"Sí [%]"=> 0, "No [%]"=> 0 }) %>
+	<% else %>
+	<%= pie_chart({"Sí [%]"=>100*@yesm/(@yesm+@nom), "No [%]"=>100*@nom/(@yesm+@nom)}) %>
+	<% end %>
+	</div>
 </div>

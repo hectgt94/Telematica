@@ -4,11 +4,23 @@
 <%@no = 0%>
 <% @stats.each do |stat| %>
 
-	<% @yes = @yes + stat.vote_yes %>
-	<% @no = @no + stat.vote_no %>
+  <% @yes = @yes + stat.vote_yes %>
+  <% @no = @no + stat.vote_no %>
 <% end %>
-<h4 class="text-center"><strong>Votos totales por el SI: </strong><%= 100*@yes/(@yes+@no) %>%</h4>
-<h4 class="text-center"><strong>Votos totales por el NO: </strong><%= 100*@no/(@yes+@no) %>%</h4>
+<h4 class="text-center"><strong>Votos por el sí: </strong>
+<% if @yes == 0 and @no == 0 %>
+<%= 0 %>
+<% else %>
+<%= 100*@yes/(@yes+@no) %>
+<% end %>
+%</h4>
+<h4 class="text-center"><strong>Votos por el no: </strong>
+<% if @yes == 0 and @no == 0 %>
+<%= 0 %>
+<% else %>
+<%= 100*@no/(@yes+@no) %>
+<% end %>
+%</h4>
 <!-- Esto es para obtener las ids de las mesas en las que se ha votado en @idm-->
 <% @idm = Array.new %>
 <% @idm[0] = 0 %> 
